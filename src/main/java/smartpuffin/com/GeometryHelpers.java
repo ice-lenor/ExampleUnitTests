@@ -6,6 +6,12 @@ public class GeometryHelpers {
 
     public static double getDistance(double latitude1, double longitude1, double latitude2, double longitude2) {
 
+        if (!isValidLatitude(latitude1)
+                || !isValidLatitude(latitude2)
+                || !isValidLongitude(longitude1)
+                || !isValidLongitude(longitude2))
+            throw new IllegalArgumentException();
+
         double latitude1Radians = toRadians(latitude1);
         double latitude2Radians = toRadians(latitude2);
         double latitudeDiffRadians = toRadians(latitude2-latitude1);
@@ -17,6 +23,14 @@ public class GeometryHelpers {
 
         double distance = EarthRadius * c;
         return distance;
+    }
+
+    private static boolean isValidLatitude(double latitude) {
+        return latitude <= 90 && latitude >= -90;
+    }
+
+    private static boolean isValidLongitude(double latitude) {
+        return latitude <= 180 && latitude >= -180;
     }
 
     private static double toRadians(double degrees) {
