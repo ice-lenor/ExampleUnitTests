@@ -4,6 +4,9 @@ public class GeometryHelpers {
     private static double EarthRadius = 6371000;
 
 
+    // Returns distance between two points on the surface of the Earth using haversine formula.
+    // https://en.wikipedia.org/wiki/Haversine_formula
+    // Returned distance is in meters.
     public static double getDistance(double latitude1, double longitude1, double latitude2, double longitude2) {
 
         if (!isValidLatitude(latitude1)
@@ -29,8 +32,8 @@ public class GeometryHelpers {
         return latitude <= 90 && latitude >= -90;
     }
 
-    private static boolean isValidLongitude(double latitude) {
-        return latitude <= 180 && latitude >= -180;
+    private static boolean isValidLongitude(double longitude) {
+        return longitude <= 180 && longitude >= -180;
     }
 
     private static double toRadians(double degrees) {
