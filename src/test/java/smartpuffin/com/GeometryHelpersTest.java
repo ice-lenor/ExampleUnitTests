@@ -59,6 +59,13 @@ class GeometryHelpersTest {
     }
 
     @Test
+    void distanceFrom180ToMinus180LongitudeShouldBeZero() {
+        // Because -180 and 180 longitude is essentially the same, the distance should be zero.
+        double distance = GeometryHelpers.getDistance(20, -180, 20, 180);
+        assertEquals(0, distance, Precision);
+    }
+
+    @Test
     void distanceAround0thMeridianLondon() {
         double distance = GeometryHelpers.getDistance(51.512722, -0.288552, 51.516100, 0.068025);
         assertEquals(24677.4562, distance, Precision);
