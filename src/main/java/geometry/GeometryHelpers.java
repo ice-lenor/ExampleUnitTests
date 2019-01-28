@@ -1,4 +1,4 @@
-package smartpuffin.com;
+package geometry;
 
 public class GeometryHelpers {
     private static double EarthRadiusKm = 6371000;

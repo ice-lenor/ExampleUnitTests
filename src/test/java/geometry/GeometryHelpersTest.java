@@ -1,4 +1,4 @@
-package smartpuffin.com;
+package geometry;
 
 import org.junit.jupiter.api.Test;
 
