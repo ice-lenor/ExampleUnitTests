@@ -1,30 +1,29 @@
 package smartpuffin.com;
 
 public class GeometryHelpers {
-    private static double EarthRadius = 6371000;
+    private static double EarthRadiusKm = 6371000;
 
-
-    // Returns distance between two points on the surface of the Earth using haversine formula.
+    // Returns distance between two points on the surface of the Earth using the haversine formula.
     // https://en.wikipedia.org/wiki/Haversine_formula
     // Returned distance is in meters.
-    public static double getDistance(double latitude1, double longitude1, double latitude2, double longitude2) {
+    public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
 
-        if (!isValidLatitude(latitude1)
-                || !isValidLatitude(latitude2)
-                || !isValidLongitude(longitude1)
-                || !isValidLongitude(longitude2))
+        if (!isValidLatitude(lat1)
+                || !isValidLatitude(lat2)
+                || !isValidLongitude(lon1)
+                || !isValidLongitude(lon2))
             throw new IllegalArgumentException();
 
-        double latitude1Radians = toRadians(latitude1);
-        double latitude2Radians = toRadians(latitude2);
-        double latitudeDiffRadians = toRadians(latitude2-latitude1);
-        double longitudeDiffRadians = toRadians(longitude2-longitude1);
+        double lat1Radians = toRadians(lat1);
+        double lat2Radians = toRadians(lat2);
+        double latDiffRadians = toRadians(lat2-lat1);
+        double lonDiffRadians = toRadians(lon2-lon1);
 
-        double a = Math.sin(latitudeDiffRadians/2) * Math.sin(latitudeDiffRadians/2) +
-                Math.cos(latitude1Radians) * Math.cos(latitude2Radians) * Math.sin(longitudeDiffRadians/2) * Math.sin(longitudeDiffRadians/2);
+        double a = Math.sin(latDiffRadians/2) * Math.sin(latDiffRadians/2) +
+                Math.cos(lat1Radians) * Math.cos(lat2Radians) * Math.pow(Math.sin(lonDiffRadians/2), 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-        double distance = EarthRadius * c;
+        double distance = EarthRadiusKm * c;
         return distance;
     }
 

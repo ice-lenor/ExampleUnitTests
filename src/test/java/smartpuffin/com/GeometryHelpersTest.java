@@ -13,9 +13,27 @@ class GeometryHelpersTest {
     //
 
     @Test
-    void distanceTheNetherlandsNorthToSouth() {
-        double distance = GeometryHelpers.getDistance(53.478612, 6.250578, 50.752342,  5.916981);
-        assertEquals(304001.0210, distance, Precision);
+    void distanceNetherlandsNorthToSouth() {
+
+        double lat1 = 53.478612, lon1 = 6.250578, lat2 = 50.752342, lon2 = 5.916981;
+
+        double expectedDistance = 304001.0210460888; // meters
+
+        double resultDistance = GeometryHelpers.getDistance(lat1, lon1, lat2, lon2);
+
+        assertEquals(expectedDistance, resultDistance);
+    }
+
+    @Test
+    void distanceNetherlandsNorthToSouthWithPrecision() {
+
+        double lat1 = 53.478612, lon1 = 6.250578, lat2 = 50.752342, lon2 = 5.916981;
+
+        double expectedDistance = 304001.021; // meters
+
+        double resultDistance = GeometryHelpers.getDistance(lat1, lon1, lat2, lon2);
+
+        assertEquals(expectedDistance, resultDistance, Precision);
     }
 
     @Test
@@ -51,7 +69,7 @@ class GeometryHelpersTest {
     //
 
     // Distance around 180th meridian - read more about this problem here:
-    // https://smartpuffin.com/little-geo-stories-a-tale-of-180th-meridia
+    // https://smartpuffin.com/little-geo-stories-a-tale-of-180th-meridian
     @Test
     void distanceAround180thMeridianFiji() {
         double distance = GeometryHelpers.getDistance(-17.947826, 177.221232, -16.603513, -179.779055);
@@ -89,17 +107,11 @@ class GeometryHelpersTest {
 
     @Test
     void distanceAroundMinus90LatitudeAntarctica() {
-        double distance = GeometryHelpers.getDistance(-89.9, -179.9, -89.9, 179.9);
-        assertEquals(38.8143, distance, Precision);
-    }
-
-    @Test
-    void distanceMinus90LatitudeSouthPole() {
         // Practically, this is the South Pole. When latitude = 90 or -90,
         // Longitude doesn't matter - all meridians meet in this point.
         // So with both latitudes = -90, the distance is effectively 0.
-        double distance = GeometryHelpers.getDistance(-90, -179.9, -90, 179.9);
-        assertEquals(0, distance, Precision);
+        double distance = GeometryHelpers.getDistance(-89.9, -179.9, -89.9, 179.9);
+        assertEquals(38.8143, distance, Precision);
     }
 
     // How about from one pole to another?
@@ -191,56 +203,56 @@ class GeometryHelpersTest {
     @Test
     void invalidLatitude1TooMuch() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(666,0,0,0);
+            GeometryHelpers.getDistance(666, 0, 0, 0);
         });
     }
 
     @Test
     void invalidLatitude1TooLittle() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(-666,0,0,0);
+            GeometryHelpers.getDistance(-666, 0, 0, 0);
         });
     }
 
     @Test
     void invalidLatitude2TooMuch() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(0,0,666,0);
+            GeometryHelpers.getDistance(0, 0, 666, 0);
         });
     }
 
     @Test
     void invalidLatitude2TooLittle() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(0,0,-666,0);
+            GeometryHelpers.getDistance(0, 0, -666, 0);
         });
     }
 
     @Test
     void invalidLongitude1TooMuch() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(0,666,0,0);
+            GeometryHelpers.getDistance(0, 666, 0, 0);
         });
     }
 
     @Test
     void invalidLongitude1TooLittle() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(0,-666,0,0);
+            GeometryHelpers.getDistance(0, -666, 0, 0);
         });
     }
 
     @Test
     void invalidLongitude2TooMuch() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(0,0,0,666);
+            GeometryHelpers.getDistance(0, 0, 0, 666);
         });
     }
 
     @Test
     void invalidLongitude2TooLittle() {
         assertThrows(IllegalArgumentException.class, () -> {
-            GeometryHelpers.getDistance(0,0,0, -666);
+            GeometryHelpers.getDistance(0, 0, 0, -666);
         });
     }
 
