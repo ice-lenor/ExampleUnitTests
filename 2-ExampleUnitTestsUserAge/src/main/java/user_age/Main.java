@@ -1,6 +1,6 @@
 package user_age;
 
-import java.util.Scanner;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +9,7 @@ public class Main {
 
         UsersDatabase usersDatabase = new UsersDatabase();
         UserAgeCalculator calculator = new UserAgeCalculator(usersDatabase);
+
         System.out.print("User age = " + calculator.calculateUserAge(userId) + " days");
     }
 }

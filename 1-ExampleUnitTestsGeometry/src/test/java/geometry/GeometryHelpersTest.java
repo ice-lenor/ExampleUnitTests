@@ -1,12 +1,12 @@
 package geometry;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class GeometryHelpersTest {
 
-    private double Precision = 0.001; // We are comparing calculated distance using 1mm precision
+    // We are comparing calculated distance using 1mm precision
+    private double Precision = 0.001;
 
     //
     // Base cases: normal distances in different points of the planet
@@ -17,7 +17,7 @@ class GeometryHelpersTest {
 
         double lat1 = 53.478612, lon1 = 6.250578, lat2 = 50.752342, lon2 = 5.916981;
 
-        double expectedDistance = 304001.0210460888; // meters
+        double expectedDistance = 304001.02104608883; // meters
 
         double resultDistance = GeometryHelpers.getDistance(lat1, lon1, lat2, lon2);
 

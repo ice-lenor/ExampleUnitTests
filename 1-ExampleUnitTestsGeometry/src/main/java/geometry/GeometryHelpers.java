@@ -14,10 +14,10 @@ public class GeometryHelpers {
                 || !isValidLongitude(lon2))
             throw new IllegalArgumentException();
 
-        double lat1Radians = toRadians(lat1);
-        double lat2Radians = toRadians(lat2);
-        double latDiffRadians = toRadians(lat2-lat1);
-        double lonDiffRadians = toRadians(lon2-lon1);
+        double lat1Radians = Math.toRadians(lat1);
+        double lat2Radians = Math.toRadians(lat2);
+        double latDiffRadians = Math.toRadians(lat2-lat1);
+        double lonDiffRadians = Math.toRadians(lon2-lon1);
 
         double a = Math.sin(latDiffRadians/2) * Math.sin(latDiffRadians/2) +
                 Math.cos(lat1Radians) * Math.cos(lat2Radians) * Math.pow(Math.sin(lonDiffRadians/2), 2);
@@ -33,10 +33,5 @@ public class GeometryHelpers {
 
     private static boolean isValidLongitude(double longitude) {
         return longitude <= 180 && longitude >= -180;
-    }
-
-    private static double toRadians(double degrees) {
-        double radians = degrees * Math.PI / 180;
-        return radians;
     }
 }
