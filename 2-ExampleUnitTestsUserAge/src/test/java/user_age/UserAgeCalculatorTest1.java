@@ -13,6 +13,6 @@ public class UserAgeCalculatorTest1 {
 
         int resultAge = calculator.calculateUserAge(1);
 
-        assertEquals(12849, resultAge);
+        assertEquals(12850, resultAge);
     }
 }

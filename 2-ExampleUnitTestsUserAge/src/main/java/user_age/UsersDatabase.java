@@ -1,20 +1,32 @@
 package user_age;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class UsersDatabase {
     private ArrayList<User> users;
 
     public UsersDatabase() {
-        users = new ArrayList<>(
-            Arrays.asList(
-                new User(1, "Emma", DateHelpers.parseDate("1983-12-03")),
-                new User(2, "Janneke", DateHelpers.parseDate("1992-04-25")),
-                new User(3, "Jaap", DateHelpers.parseDate("1996-02-19")),
-                new User(4, "Sophie", DateHelpers.parseDate("1978-07-30")),
-                new User(5, "Pieter", DateHelpers.parseDate("2019-01-01"))
-            )
-        );
+
+        users = new ArrayList<>();
+
+        try {
+            String filePath = new File("").getAbsolutePath();
+            FileReader filereader = new FileReader(filePath.concat("/resources/users_database.csv"));
+            CSVReader csvReader = new CSVReaderBuilder(filereader).build();
+            List<String[]> allData = csvReader.readAll();
+            for (String[] row : allData) {
+                User user = new User(Integer.parseInt(row[0]), row[1], DateHelpers.parseDate(row[2]));
+                users.add(user);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public User getUserById(int id) {
