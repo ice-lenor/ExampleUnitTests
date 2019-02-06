@@ -16,6 +16,12 @@ public class UserAgeCalculatorTest2 {
         calculator = new UserAgeCalculator(usersDatabase);
     }
 
+    @After
+    public void teardown() {
+        usersDatabase = null;
+        calculator = null;
+    }
+
     @Test
     public void userAge28Days() {
 
