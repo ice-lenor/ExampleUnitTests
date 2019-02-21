@@ -1,9 +1,11 @@
 package geometry;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-class GeometryHelpersTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class GeometryHelpersTest2 {
 
     // We are comparing calculated distance using 1mm precision
     private double Precision = 0.001;
@@ -11,18 +13,6 @@ class GeometryHelpersTest {
     //
     // Base cases: normal distances in different points of the planet
     //
-
-    @Test
-    void distanceNetherlandsNorthToSouth() {
-
-        double lat1 = 53.478612, lon1 = 6.250578, lat2 = 50.752342, lon2 = 5.916981;
-
-        double expectedDistance = 304001.02104608883; // meters
-
-        double resultDistance = GeometryHelpers.getDistance(lat1, lon1, lat2, lon2);
-
-        assertEquals(expectedDistance, resultDistance);
-    }
 
     @Test
     void distanceNetherlandsNorthToSouthWithPrecision() {
@@ -225,13 +215,13 @@ class GeometryHelpersTest {
     // If both points are absolutely the same, are we getting 0 m distance?
 
     @Test
-    void distanceIs0BetweenTwoSamePoints1() {
+    void distanceIs0BetweenTwoSamePoints() {
         double distance = GeometryHelpers.getDistance(12.345, 40.88993, 12.345, 40.88993);
         assertEquals(0, distance);
     }
 
     @Test
-    void distanceIs0BetweenTwoSamePoints2() {
+    void distanceIs0BetweenTwoSamePoints_2() {
         double distance = GeometryHelpers.getDistance(-12.345, -40.88993, -12.345, -40.88993);
         assertEquals(0, distance);
     }

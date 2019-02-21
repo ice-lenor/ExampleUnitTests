@@ -5,17 +5,30 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mockito;
 import java.util.Date;
 
-public class UserAgeCalculatorTest2 {
+public class UserAgeCalculatorTest3 {
+
+    private int userId = 42;
+    private UsersDatabase usersDatabase;
+    private UserAgeCalculator calculator;
+
+    @Before
+    public void setup() {
+        usersDatabase = Mockito.mock(UsersDatabase.class);
+        calculator = new UserAgeCalculator(usersDatabase);
+    }
+
+    @After
+    public void teardown() {
+        usersDatabase = null;
+        calculator = null;
+    }
 
     @Test
     public void userBabyAge() {
 
-        UsersDatabase usersDatabase = Mockito.mock(UsersDatabase.class);
-        int userId = 42;
-        User user = new User(userId, "Baby", DateHelpers.parseDate("2019-01-01"));
-        Mockito.when(usersDatabase.getUserById(userId)).thenReturn(user);
+        User user = new User(userId, "Young child", DateHelpers.parseDate("2019-01-01"));
 
-        UserAgeCalculator calculator = new UserAgeCalculator(usersDatabase);
+        Mockito.when(usersDatabase.getUserById(userId)).thenReturn(user);
 
         int resultAge = calculator.calculateUserAge(userId);
 
@@ -25,12 +38,8 @@ public class UserAgeCalculatorTest2 {
     @Test
     public void userAge365Days() {
 
-        UsersDatabase usersDatabase = Mockito.mock(UsersDatabase.class);
-        int userId = 42;
-        User user = new User(userId, "Baby", DateHelpers.parseDate("2018-02-26"));
+        User user = new User(userId, "Someone", DateHelpers.parseDate("2018-02-26"));
         Mockito.when(usersDatabase.getUserById(userId)).thenReturn(user);
-
-        UserAgeCalculator calculator = new UserAgeCalculator(usersDatabase);
 
         int resultAge = calculator.calculateUserAge(userId);
 
@@ -40,12 +49,8 @@ public class UserAgeCalculatorTest2 {
     @Test
     public void userIsNull() {
 
-        UsersDatabase usersDatabase = Mockito.mock(UsersDatabase.class);
-        int userId = 42;
         User user = null;
         Mockito.when(usersDatabase.getUserById(userId)).thenReturn(user);
-
-        UserAgeCalculator calculator = new UserAgeCalculator(usersDatabase);
 
         assertThrows(IllegalArgumentException.class, () -> {
             int resultAge = calculator.calculateUserAge(userId);
@@ -55,12 +60,9 @@ public class UserAgeCalculatorTest2 {
     @Test
     public void userIsFromTheFuture() {
 
-        UsersDatabase usersDatabase = Mockito.mock(UsersDatabase.class);
-        int userId = 42;
         User user = new User(userId, "Someone", DateHelpers.parseDate("2019-02-27"));
         Mockito.when(usersDatabase.getUserById(userId)).thenReturn(user);
 
-        UserAgeCalculator calculator = new UserAgeCalculator(usersDatabase);
         int resultAge = calculator.calculateUserAge(userId);
 
         assertEquals(-1, resultAge);

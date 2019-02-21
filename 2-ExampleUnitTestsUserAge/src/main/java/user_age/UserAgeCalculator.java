@@ -1,7 +1,6 @@
 package user_age;
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class UserAgeCalculator {
     private final UsersDatabase usersDatabase;
@@ -17,7 +16,11 @@ public class UserAgeCalculator {
             throw new IllegalArgumentException("User doesn't exist");
 
         Date now = new Date();
-        long diffInMilliseconds = now.getTime() - user.getBirthDate().getTime();
-        return (int)TimeUnit.DAYS.convert(diffInMilliseconds, TimeUnit.MILLISECONDS);
+        now.setHours(0);
+        now.setMinutes(0);
+        now.setSeconds(0);
+        long daysNow = now.getTime() / 1000 / 60 / 60 / 24;
+        long daysUser = user.getBirthDate().getTime() / 1000 / 60 / 60 / 24;
+        return (int)(daysNow - daysUser);
     }
 }
