@@ -23,4 +23,4 @@ http://smartpuffin.com/unit-tests-tutorial/
 I run this with Intellij IDEA and Java 1.8+.
 1. Download the source code.
 2. Open the folder with the code in Intellij IDEA.
-3. Open the file `GeometryHelpersTest.java`. You'll see green "Run test" buttons next to line numbers. Press the one next to `class GeometryHelpersTest` and watch the whole test suite execute.
+3. Open the file `GeometryHelpersTest1.java`. You'll see green "Run test" buttons next to line numbers. Press the one next to `class GeometryHelpersTest1` and watch the whole test suite execute.
