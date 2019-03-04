@@ -12,8 +12,8 @@ http://smartpuffin.com/unit-tests-tutorial/
 ## What to do with this
 1. Open the tutorial.
 1. Open `GeometryHelpers.java`.
-1. Open `GeometryHelpersTest2.java`
-1. Run the tests.
+1. Open `GeometryHelpersTest1.java`. Review the test structure. Run the test.
+1. Open `GeometryHelpersTest2.java`.
 1. Compare the first test in `GeometryHelpersTest1.java` with the first test in `GeometryHelpersTest2.java`. See how even the smallest pieces of domain area knowledge are important?
 1. Think about what else you could test. I'm sure there is something I missed!
 1. Apply the best practices in your own project.
