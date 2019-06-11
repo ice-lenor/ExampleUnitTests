@@ -133,8 +133,8 @@ class GeometryHelpersTest2 {
     // How about a really small distance?
     @Test
     void verySmallDistance() {
-        double distance = GeometryHelpers.getDistance(0, 1, 0, 1.000000001);
-        assertEquals(0.0001, distance, Precision);
+        double distance = GeometryHelpers.getDistance(0, 0, 0.00000001, 0);
+        assertEquals(0.001, distance, Precision);
     }
 
     // If both points are absolutely the same, are we getting 0 m distance?
@@ -182,47 +182,6 @@ class GeometryHelpersTest2 {
     void distanceBetweenTheSamePoints_Minus90_Minus180_Is0() {
         // from South Pole to South Pole
         double distance = GeometryHelpers.getDistance(-90,-180,-90,-180);
-        assertEquals(0, distance);
-    }
-
-    // What's the distance from one pole to another?
-    @Test
-    void distanceBetweenPoles() {
-        double distance = GeometryHelpers.getDistance(90, 0, -90, 0);
-        assertEquals(20015086.796, distance, Precision);
-    }
-
-    // How about max distance on the planet?
-    @Test
-    void distanceHalfEquator() {
-        double distance = GeometryHelpers.getDistance(0, 0, 0, 180);
-        assertEquals(20015086.796, distance, Precision);
-    }
-
-    // How about a really small distance?
-    @Test
-    void distanceOneCmLongitude() {
-        double distance = GeometryHelpers.getDistance(0, 0, 0, 0.00000001);
-        assertEquals(0.001, distance, Precision);
-    }
-
-    @Test
-    void distanceOneCmLatitude() {
-        double distance = GeometryHelpers.getDistance(0, 0, 0.00000001, 0);
-        assertEquals(0.001, distance, Precision);
-    }
-
-    // If both points are absolutely the same, are we getting 0 m distance?
-
-    @Test
-    void distanceIs0BetweenTwoSamePoints() {
-        double distance = GeometryHelpers.getDistance(12.345, 40.88993, 12.345, 40.88993);
-        assertEquals(0, distance);
-    }
-
-    @Test
-    void distanceIs0BetweenTwoSamePoints_2() {
-        double distance = GeometryHelpers.getDistance(-12.345, -40.88993, -12.345, -40.88993);
         assertEquals(0, distance);
     }
 
