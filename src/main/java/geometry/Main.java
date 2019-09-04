@@ -9,6 +9,9 @@ public class Main {
                 lat1NorthNetherlands, lon1NorthNetherlands,
                 lat2SouthNetherlands, lon2SouthNetherlands);
 
-        System.out.print(String.format("Distance from the north to the south of the Netherlands: %.2f meters", distance, " meters"));
+        System.out.print(
+                String.format("Distance from the north to the south of the Netherlands: %.2f meters",
+                        distance, " meters")
+        );
     }
 }

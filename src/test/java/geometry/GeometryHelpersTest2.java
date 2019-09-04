@@ -88,8 +88,8 @@ class GeometryHelpersTest2 {
 
     @Test
     void distance90LatitudeNorthPole() {
-        // Practically, this is the North Pole. When latitude = 90 or -90,
-        // Longitude doesn't matter - all meridians meet in this point.
+        // This is the North Pole. When latitude = 90 or -90,
+        // longitude doesn't matter - all meridians meet in this point.
         // So with both latitudes = 90, the distance is effectively 0.
         double distance = GeometryHelpers.getDistance(90, -179.9, 90, 179.9);
         assertEquals(0, distance, Precision);
@@ -97,21 +97,21 @@ class GeometryHelpersTest2 {
 
     @Test
     void distanceAroundMinus90LatitudeAntarctica() {
-        // Practically, this is the South Pole. When latitude = 90 or -90,
+        // This is the South Pole. When latitude = 90 or -90,
         // Longitude doesn't matter - all meridians meet in this point.
         // So with both latitudes = -90, the distance is effectively 0.
         double distance = GeometryHelpers.getDistance(-89.9, -179.9, -89.9, 179.9);
         assertEquals(38.8143, distance, Precision);
     }
 
-    // How about from one pole to another?
+    // How about from one pole to another? This is max distance on the planet
     @Test
     void distanceFromNorthPoleToSouthPole() {
         double distance = GeometryHelpers.getDistance(90, 10, -90, 10);
         assertEquals(20015086.7960, distance, Precision);
     }
 
-    // How about the maximal distance on the planet?
+    // Max distance on the planet along the equator
     @Test
     void maxDistanceAlongTheEquator() {
         double distance = GeometryHelpers.getDistance(0, 0, 0, 180);
@@ -154,34 +154,6 @@ class GeometryHelpersTest2 {
     void distanceBetweenTheSamePoints_0_0_Is0() {
         // Equator meets Greenwich
         double distance = GeometryHelpers.getDistance(0,0,0,0);
-        assertEquals(0, distance);
-    }
-
-    @Test
-    void distanceBetweenTheSamePoints_90_180_Is0() {
-        // from North Pole to North Pole
-        double distance = GeometryHelpers.getDistance(90,180,90,180);
-        assertEquals(0, distance);
-    }
-
-    @Test
-    void distanceBetweenTheSamePoints_90_Minus180_Is0() {
-        // from North Pole to North Pole
-        double distance = GeometryHelpers.getDistance(90,-180,90,-180);
-        assertEquals(0, distance);
-    }
-
-    @Test
-    void distanceBetweenTheSamePoints_Minus90_180_Is0() {
-        // from South Pole to South Pole
-        double distance = GeometryHelpers.getDistance(-90,180,-90,180);
-        assertEquals(0, distance);
-    }
-
-    @Test
-    void distanceBetweenTheSamePoints_Minus90_Minus180_Is0() {
-        // from South Pole to South Pole
-        double distance = GeometryHelpers.getDistance(-90,-180,-90,-180);
         assertEquals(0, distance);
     }
 
